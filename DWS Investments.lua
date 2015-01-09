@@ -196,7 +196,11 @@ function RefreshAccount(account, since)
       -- Number price: Aktueller Preis oder Kurs
       price = strToAmount(element:xpath("./td[2]/span[2]"):text()),
       -- Number purchasePrice: Kaufpreis oder Kaufkurs
-      purchasePrice = strToAmountWithDefault(element:xpath("./td[4]/span[3]"):text(), 0.0)
+      purchasePrice = strToAmountWithDefault(element:xpath("./td[4]/span[3]"):text(), 0.0),
+      -- String currencyOfPrice: Von der Kontowaehrung abweichende Waehrung des Preises.
+      currencyOfPrice = element:xpath("./td[1]/span[3]"):text(),
+      -- String currencyOfPurchasePrice: Von der Kontowaehrung abweichende Waehrung des Kaufpreises.
+      currencyOfPurchasePrice = element:xpath("./td[1]/span[3]"):text()
     }
 
     table.insert(securities, security)
