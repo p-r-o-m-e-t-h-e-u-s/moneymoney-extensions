@@ -32,7 +32,7 @@
 --
 -- Get portfolio of DWS Investments.
 --
--- ATTENTION: This extension requires MoneyMoney version 2.2.3 or higher
+-- ATTENTION: This extension requires MoneyMoney version 2.2.2 or higher
 --
 -- ---------------------------------------------------------------------------------------------------------------------
 
@@ -42,7 +42,7 @@
 -- ---------------------------------------------------------------------------------------------------------------------
 
 WebBanking {
-  version = 0.92,
+  version = 1.0,
   country = "de",
   url = "https://depot.dws.de/",
   description = string.format(MM.localizeText("Get portfolio of %s"), "DWS Investments")
