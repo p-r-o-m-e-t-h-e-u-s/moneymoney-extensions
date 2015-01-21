@@ -42,7 +42,7 @@
 -- ---------------------------------------------------------------------------------------------------------------------
 
 WebBanking {
-  version = 1.0,
+  version = 1.01,
   country = "de",
   url = "https://depot.dws.de/",
   description = string.format(MM.localizeText("Get portfolio of %s"), "DWS Investments")
@@ -146,7 +146,14 @@ function InitializeSession(protocol, bankCode, username, customer, password)
   local failure = overview_html:xpath("//*[@id='_ctl0_MainPlaceHolder_mainPanel_loginPanel_lblMessage']")
   if failure:length() > 0 then
     print("Login failed. Reason: " .. failure:text())
-    return failure:text()
+    return LoginFailed
+  end
+
+  -- Check for dialog apperance
+  local dialog = overview_html:xpath("//*[@id='_ctl0_MainPlaceHolder_popupMainPanel_btnNext_btnNextLinkButton']")
+  if dialog:length() > 0 then
+    overview_html:xpath("//*[@id='__EVENTTARGET']"):attr("value", "_ctl0$MainPlaceHolder$popupMainPanel$btnNext$btnNextLinkButton")
+    overview_html = HTML(connection:request(overview_html:xpath("//*[@id='aspnetForm']"):submit()))
   end
 
   print("Session initialization completed successfully.")
