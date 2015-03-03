@@ -42,7 +42,7 @@
 -- ---------------------------------------------------------------------------------------------------------------------
 
 WebBanking {
-  version = 1.01,
+  version = 1.02,
   country = "de",
   url = "https://depot.dws.de/",
   description = string.format(MM.localizeText("Get portfolio of %s"), "DWS Investments")
@@ -168,7 +168,7 @@ function ListAccounts(knownAccounts)
   local account = {
     owner = overview_html:xpath("//*[@id='_ctl0_MainPlaceHolder_testShadowPanel_welcomePanel_customerNameLabel']"):text(),
     name = "DWS Depot Online",
-    accountNumber = overview_html:xpath("//*[@class='AccountOverviewValueLabel']"):text(),
+    accountNumber = overview_html:xpath("//div[text()='Depotnummer:']/following-sibling::div[1]"):text(),
     portfolio = true,
     currency = "EUR",
     type = AccountTypePortfolio
